@@ -9,5 +9,18 @@
     <h2>🔥 Redirecting to your Shopee deal...</h2>
     <p>Please wait a moment.</p>
     <p>If you are not redirected, <a href="https://s.shopee.ph/8UxuXovFGq">click here</a>.</p>
+  <script>
+fetch("https://api.github.com/repos/link452316/shopee-redirect/dispatches", 
+      {
+  method: "POST",
+  headers: {
+    "Accept": "application/vnd.github.everest-preview+json",
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    event_type: "click"
+  })
+});
+</script>
   </body>
 </html>
