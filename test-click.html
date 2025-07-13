@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h2>Test Click Trigger</h2>
+    <button onclick="logClick()">Send Click</button>
+
+    <script>
+    function logClick() {
+      fetch("https://api.github.com/repos/link452316/shopee-redirect/dispatches", {
+        method: "POST",
+        headers: {
+          "Accept": "application/vnd.github.everest-preview+json",
+          "Authorization": "Bearer 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",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          event_type: "click"
+        })
+      }).then(() => alert('Click sent!'));
+    }
+    </script>
+  </body>
+</html>
