@@ -1,39 +1,44 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Redirecting...</title>
-    <meta http-equiv="refresh" content="2; url=https://s.shopee.ph/8UxuXovFGq">
-  </head>
-  <body style="text-align: center; font-family: Arial, sans-serif; margin-top: 100px;">
-    <h2>🔥 Redirecting to your Shopee deal...</h2>
-    <p>Please wait a moment.</p>
-    <p>If you are not redirected, <a href="https://s.shopee.ph/8UxuXovFGq">click here</a>.</p>
-  <script>
-fetch("https://api.github.com/repos/link452316/shopee-redirect/dispatches", 
-      {
-  method: "POST",
-  headers: {
-    "Accept": "application/vnd.github.everest-preview+json",
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify({
-    event_type: "click"
-  })
-});
-</script>
- <script>
-fetch("https://api.github.com/repos/link452316/shopee-redirect/actions/workflows/log-click.yml/dispatches", {
-  method: "POST",
-  headers: {
-    "Accept": "application/vnd.github.v3+json",
-    "Authorization": "Bearer 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",
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify({
-    ref: "main"
-  })
-});
-</script>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Redirecting to Shopee...</title>
+  <meta http-equiv="refresh" content="1;url=https://s.shopee.ph/8UxuXovFGq">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      background-color: #f2552c;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+    h1 {
+      font-size: 1.5rem;
+    }
+    .loader {
+      margin-top: 1rem;
+      border: 5px solid rgba(255, 255, 255, 0.3);
+      border-top: 5px solid white;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <h1>Redirecting to Shopee...</h1>
+    <div class="loader"></div>
+  </div>
+</body>
 </html>
