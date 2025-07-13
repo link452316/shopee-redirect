@@ -14,10 +14,12 @@ jobs:
         run: |
           echo "Click at $(date -u)" >> clicks.txt
 
-      - name: Commit the log
+      - name: Commit and Push
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
         run: |
           git config user.name "ClickBot"
           git config user.email "bot@clicktracker.com"
           git add clicks.txt
-          git commit -m "Logged click" || echo "Nothing to commit"
-          git push https://x-access-token:${{ secrets.GH_PAT }}@github.com/${{ github.repository }} HEAD:main
+          git commit -m "Logged click" || echo "No changes to commit"
+          git push https://x-access-token:${GH_PAT}@github.com/${{ github.repository }} HEAD:main
