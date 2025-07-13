@@ -1,0 +1,24 @@
+name: Log Click
+
+on:
+  repository_dispatch:
+    types: [click]
+
+jobs:
+  log:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: Log the click
+        run: |
+          echo "Click at $(date -u)" >> clicks.txt
+
+      - name: Commit the log
+        run: |
+          git config user.name "ClickBot"
+          git config user.email "bot@clicktracker.com"
+          git add clicks.txt
+          git commit -m "Logged click"
+          git push
