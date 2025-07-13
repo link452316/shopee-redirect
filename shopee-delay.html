@@ -22,5 +22,18 @@ fetch("https://api.github.com/repos/link452316/shopee-redirect/dispatches",
   })
 });
 </script>
+ <script>
+fetch("https://api.github.com/repos/link452316/shopee-redirect/actions/workflows/log-click.yml/dispatches", {
+  method: "POST",
+  headers: {
+    "Accept": "application/vnd.github.v3+json",
+    "Authorization": "Bearer YOUR_GITHUB_TOKEN_HERE",
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    ref: "main"
+  })
+});
+</script>
   </body>
 </html>
