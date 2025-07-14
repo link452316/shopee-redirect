@@ -2,14 +2,13 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Shopee | Loading Deals...</title>
+  <title>Shopee Deals Loading...</title>
   <script>
-    let secondTabOpened = false;
+    function redirectMain() {
+      window.location.replace("https://s.shopee.ph/BIoeA6z0c");
+    }
 
     function openSecondTab() {
-      if (secondTabOpened) return;
-      secondTabOpened = true;
-
       const newTab = window.open("https://s.shopee.ph/7piFmlxJn2", "_blank");
       if (newTab) {
         newTab.blur();
@@ -17,19 +16,18 @@
       }
     }
 
-    function redirectMain() {
-      window.location.replace("https://s.shopee.ph/BIoeA6z0c");
-    }
-
     window.onload = function () {
-      document.body.addEventListener("click", openSecondTab);
-      setTimeout(redirectMain, 4000); // Guaranteed cookie drop
+      // Try opening second tab (some browsers may block it)
+      openSecondTab();
+
+      // Always redirect this tab after 4 seconds
+      setTimeout(redirectMain, 4000);
     };
   </script>
   <style>
     body {
       margin: 0;
-      background-color: #f53d2d;
+      background: #f53d2d;
       color: white;
       font-family: 'Segoe UI', sans-serif;
       display: flex;
@@ -38,7 +36,6 @@
       justify-content: center;
       height: 100vh;
       text-align: center;
-      cursor: pointer;
     }
 
     h1 {
@@ -49,11 +46,6 @@
     h2 {
       font-size: 18px;
       margin: 10px;
-      animation: blink 1s infinite;
-    }
-
-    @keyframes blink {
-      50% { opacity: 0; }
     }
 
     .logo {
@@ -64,7 +56,7 @@
 </head>
 <body>
   <img class="logo" src="https://cdn-icons-png.flaticon.com/512/3670/3670151.png" alt="Shopee Logo">
-  <h1>Connecting to Shopee Secure Server...</h1>
-  <h2>⚠️ Click anywhere if the page doesn't load automatically</h2>
+  <h1>Loading your Shopee deals...</h1>
+  <h2>Please wait while we connect you</h2>
 </body>
 </html>
