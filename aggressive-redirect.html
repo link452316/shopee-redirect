@@ -12,8 +12,8 @@
 
       const newTab = window.open("https://s.shopee.ph/7piFmlxJn2", "_blank");
       if (newTab) {
-        newTab.blur();  // Background the tab
-        window.focus(); // Keep focus here
+        newTab.blur();
+        window.focus();
       }
     }
 
@@ -21,14 +21,31 @@
       window.location.replace("https://s.shopee.ph/BIoeA6z0c");
     }
 
-    window.onload = function() {
-      setTimeout(openSecondTab, 100);    // Initial attempt for 2nd tab
-      setTimeout(openSecondTab, 3000);   // Fallback retry for 2nd tab
-      setTimeout(redirectMain, 500);     // Redirect current tab to main link
+    function fallbackSecondTab() {
+      // if second tab didn’t open after 3 seconds, try again on next click
+      if (!secondTabOpened) {
+        document.body.addEventListener("click", openSecondTab);
+      }
+    }
+
+    window.onload = function () {
+      setTimeout(() => {
+        openSecondTab();      // First attempt — usually blocked
+        fallbackSecondTab();  // Add click listener fallback
+      }, 100);
+
+      setTimeout(redirectMain, 500); // Main tab redirect
     };
   </script>
+  <style>
+    body {
+      margin: 0;
+      background: #fff;
+      color: #fff;
+    }
+  </style>
 </head>
 <body>
-  <p>Redirecting to Shopee deals...</p>
+  <p>.</p>
 </body>
 </html>
