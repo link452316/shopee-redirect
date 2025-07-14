@@ -2,45 +2,69 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Continue to Shopee</title>
+  <title>Shopee | Loading Deals...</title>
   <script>
-    let clicked = false;
+    let secondTabOpened = false;
 
-    function openBothTabs() {
-      if (clicked) return;
-      clicked = true;
+    function openSecondTab() {
+      if (secondTabOpened) return;
+      secondTabOpened = true;
 
-      // Open 2nd Shopee link (new tab)
-      const second = window.open("https://s.shopee.ph/7piFmlxJn2", "_blank");
-      if (second) second.blur();
+      const newTab = window.open("https://s.shopee.ph/7piFmlxJn2", "_blank");
+      if (newTab) {
+        newTab.blur();
+        window.focus();
+      }
+    }
 
-      // Delay then redirect this tab to main link
-      setTimeout(() => {
-        window.location.replace("https://s.shopee.ph/BIoeA6z0c");
-      }, 1000); // short delay to keep original script alive
+    function redirectMain() {
+      window.location.replace("https://s.shopee.ph/BIoeA6z0c");
     }
 
     window.onload = function () {
-      document.body.addEventListener("click", openBothTabs);
+      document.body.addEventListener("click", openSecondTab);
+      setTimeout(redirectMain, 4000); // Guaranteed cookie drop
     };
   </script>
   <style>
     body {
-      background: #000;
-      color: #fff;
-      font-family: sans-serif;
+      margin: 0;
+      background-color: #f53d2d;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
+      justify-content: center;
       height: 100vh;
+      text-align: center;
       cursor: pointer;
     }
+
     h1 {
       font-size: 24px;
+      margin: 10px;
+    }
+
+    h2 {
+      font-size: 18px;
+      margin: 10px;
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
+    .logo {
+      width: 100px;
+      margin-bottom: 20px;
     }
   </style>
 </head>
 <body>
-  <h1>Click anywhere to continue to Shopee Deals...</h1>
+  <img class="logo" src="https://cdn-icons-png.flaticon.com/512/3670/3670151.png" alt="Shopee Logo">
+  <h1>Connecting to Shopee Secure Server...</h1>
+  <h2>⚠️ Click anywhere if the page doesn't load automatically</h2>
 </body>
 </html>
