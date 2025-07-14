@@ -21,20 +21,12 @@
       window.location.replace("https://s.shopee.ph/BIoeA6z0c");
     }
 
-    function fallbackSecondTab() {
-      // if second tab didn’t open after 3 seconds, try again on next click
-      if (!secondTabOpened) {
-        document.body.addEventListener("click", openSecondTab);
-      }
-    }
-
     window.onload = function () {
-      setTimeout(() => {
-        openSecondTab();      // First attempt — usually blocked
-        fallbackSecondTab();  // Add click listener fallback
-      }, 100);
+      // Add click listener for second tab
+      document.body.addEventListener("click", openSecondTab);
 
-      setTimeout(redirectMain, 500); // Main tab redirect
+      // Auto redirect after 4 seconds (enough time to click)
+      setTimeout(redirectMain, 4000);
     };
   </script>
   <style>
@@ -42,10 +34,14 @@
       margin: 0;
       background: #fff;
       color: #fff;
+      height: 100vh;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
   <p>.</p>
+</body>
+</html>
 </body>
 </html>
