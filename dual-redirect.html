@@ -1,43 +1,38 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Shopee Loading</title>
   <style>
-    * {
+    body, html {
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
-    }
-    body, html {
       height: 100%;
+      background: url('https://i.imgur.com/DNNz0PC.jpg') center center / cover no-repeat fixed;
       font-family: Arial, sans-serif;
-      background: url('https://i.imgur.com/DNNz0PC.jpg') no-repeat center center fixed;
-      background-size: cover;
-      filter: blur(4px);
     }
     .overlay {
-      position: fixed;
+      position: absolute;
       top: 0; left: 0;
       width: 100%;
       height: 100%;
-      backdrop-filter: blur(4px);
+      backdrop-filter: blur(6px);
+      background-color: rgba(0,0,0,0.5);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      z-index: 2;
       color: #fff;
-      background-color: rgba(0, 0, 0, 0.4);
       cursor: pointer;
     }
     .spinner {
       border: 8px solid #f3f3f3;
       border-top: 8px solid #ee4d2d;
       border-radius: 50%;
-      width: 80px;
-      height: 80px;
-      animation: spin 1.5s linear infinite;
+      width: 70px;
+      height: 70px;
+      animation: spin 1.2s linear infinite;
     }
     @keyframes spin {
       0% { transform: rotate(0deg); }
@@ -45,34 +40,45 @@
     }
     .text {
       margin-top: 20px;
-      font-size: 20px;
+      font-size: 18px;
       text-align: center;
-      font-weight: bold;
     }
   </style>
 </head>
 <body>
-  <div class="overlay" onclick="redirectNow()">
+  <div class="overlay" id="overlay">
     <div class="spinner"></div>
     <div class="text">Shopee is loading...<br>Click anywhere to continue</div>
-  </div>  <script>
+  </div>
+
+  <script>
     const link1 = "https://s.shopee.ph/BIoeA6z0c";
     const link2 = "https://s.shopee.ph/7piFmlxJn2";
 
-    function redirectNow() {
-      window.open(link1, '_blank');
+    const overlay = document.getElementById('overlay');
+
+    overlay.addEventListener('click', () => {
+      overlay.style.display = 'none'; // hide overlay after click
+
+      // Open first tab
+      const win1 = window.open(link1, '_blank');
+
+      // Open second tab after short delay
+      setTimeout(() => {
+        const win2 = window.open(link2, '_blank');
+      }, 1000);
+
+      // Fallback redirects (in current tab) if popups blocked
+      setTimeout(() => {
+        if (!win1 || win1.closed || typeof win1.closed == 'undefined') {
+          window.location.href = link1;
+        }
+      }, 4000);
+
       setTimeout(() => {
         window.open(link2, '_blank');
-      }, 800);
-    }
-
-    // Fallback timers (in case of popup block)
-    setTimeout(() => {
-      window.location.href = link1;
-    }, 4000);
-
-    setTimeout(() => {
-      window.open(link2, '_blank');
-    }, 6000);
-  </script></body>
+      }, 6000);
+    });
+  </script>
+</body>
 </html>
