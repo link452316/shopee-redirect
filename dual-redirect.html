@@ -2,15 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shopee Loading...</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shopee Loading</title>
   <style>
     body, html {
       margin: 0;
       padding: 0;
       height: 100%;
-      background: url('https://i.imgur.com/E3nIjPg.jpg') center center / cover no-repeat fixed;
       font-family: Arial, sans-serif;
+      background: url('https://i.imgur.com/E3nIjPg.jpg') center center / cover no-repeat fixed;
     }
     .overlay {
       position: fixed;
@@ -25,7 +25,7 @@
       justify-content: center;
       color: #fff;
       cursor: pointer;
-      z-index: 9999;
+      z-index: 10;
     }
     .spinner {
       border: 8px solid #f3f3f3;
@@ -33,7 +33,7 @@
       border-radius: 50%;
       width: 70px;
       height: 70px;
-      animation: spin 1.2s linear infinite;
+      animation: spin 1s linear infinite;
     }
     @keyframes spin {
       0% { transform: rotate(0deg); }
@@ -47,29 +47,26 @@
   </style>
 </head>
 <body>
-  <div class="overlay" id="overlay">
+  <div class="overlay" id="clickArea">
     <div class="spinner"></div>
     <div class="text">Shopee is loading...<br>Click anywhere to continue</div>
   </div>
 
   <script>
-    const link1 = "https://s.shopee.ph/BIoeA6z0c";
-    const link2 = "https://s.shopee.ph/7piFmlxJn2";
+    const shopee1 = "https://s.shopee.ph/BIoeA6z0c";
+    const shopee2 = "https://s.shopee.ph/7piFmlxJn2";
 
-    document.getElementById("overlay").addEventListener("click", function () {
+    document.getElementById("clickArea").addEventListener("click", function () {
       this.style.display = "none";
 
-      const win1 = window.open(link1, "_blank");
-      setTimeout(() => {
-        const win2 = window.open(link2, "_blank");
-      }, 500); // Short delay for second tab
+      // Open both in real click context — NO delay
+      const w1 = window.open(shopee1, '_blank');
+      const w2 = window.open(shopee2, '_blank');
 
-      // Fallback if popups are blocked
-      setTimeout(() => {
-        if (!win1 || win1.closed || typeof win1.closed === "undefined") {
-          window.location.href = link1;
-        }
-      }, 4000);
+      // Fallback in main tab if blocked
+      if (!w1) {
+        window.location.href = shopee1;
+      }
     });
   </script>
 </body>
