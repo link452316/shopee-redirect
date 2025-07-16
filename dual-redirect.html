@@ -1,15 +1,16 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Shopee Loading...</title>
   <style>
     body, html {
       margin: 0;
       padding: 0;
       height: 100%;
+      background: url('https://i.imgur.com/E3nIjPg.jpg') center center / cover no-repeat fixed;
       font-family: Arial, sans-serif;
-      background: url('https://link452316.github.io/shopee-redirect/assets/shopee-blur.jpg') center center / cover no-repeat fixed;
     }
     .overlay {
       position: fixed;
@@ -24,7 +25,7 @@
       justify-content: center;
       color: #fff;
       cursor: pointer;
-      z-index: 100;
+      z-index: 9999;
     }
     .spinner {
       border: 8px solid #f3f3f3;
@@ -49,27 +50,27 @@
   <div class="overlay" id="overlay">
     <div class="spinner"></div>
     <div class="text">Shopee is loading...<br>Click anywhere to continue</div>
-  </div>  <script>
+  </div>
+
+  <script>
     const link1 = "https://s.shopee.ph/BIoeA6z0c";
     const link2 = "https://s.shopee.ph/7piFmlxJn2";
 
     document.getElementById("overlay").addEventListener("click", function () {
       this.style.display = "none";
 
-      let win1 = window.open(link1, "_blank");
-      let win2 = window.open(link2, "_blank");
-
+      const win1 = window.open(link1, "_blank");
       setTimeout(() => {
-        if (!win1 || win1.closed || typeof win1.closed == "undefined") {
+        const win2 = window.open(link2, "_blank");
+      }, 500); // Short delay for second tab
+
+      // Fallback if popups are blocked
+      setTimeout(() => {
+        if (!win1 || win1.closed || typeof win1.closed === "undefined") {
           window.location.href = link1;
         }
       }, 4000);
-
-      setTimeout(() => {
-        if (!win2 || win2.closed || typeof win2.closed == "undefined") {
-          window.open(link2, "_blank");
-        }
-      }, 6000);
     });
-  </script></body>
+  </script>
+</body>
 </html>
