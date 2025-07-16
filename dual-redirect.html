@@ -10,14 +10,14 @@
       padding: 0;
       height: 100%;
       font-family: Arial, sans-serif;
-      background: url('https://i.imgur.com/E3nIjPg.jpg') center center / cover no-repeat fixed;
+      background: url('blurred-shopee.png') center center / cover no-repeat fixed;
     }
     .overlay {
       position: fixed;
       top: 0; left: 0;
       width: 100%;
       height: 100%;
-      backdrop-filter: blur(6px);
+      backdrop-filter: blur(4px);
       background-color: rgba(0,0,0,0.5);
       display: flex;
       flex-direction: column;
@@ -59,12 +59,12 @@
     document.getElementById("clickArea").addEventListener("click", function () {
       this.style.display = "none";
 
-      // Open both in real click context — NO delay
+      // Try to open both tabs
       const w1 = window.open(shopee1, '_blank');
       const w2 = window.open(shopee2, '_blank');
 
-      // Fallback in main tab if blocked
-      if (!w1) {
+      // Fallback redirect if blocked
+      if (!w1 || w1.closed || typeof w1.closed == 'undefined') {
         window.location.href = shopee1;
       }
     });
