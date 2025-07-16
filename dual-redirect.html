@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Shopee Loading</title>
+  <title>Shopee Loading...</title>
   <style>
     body, html {
       margin: 0;
@@ -55,29 +55,25 @@
     const link1 = "https://s.shopee.ph/BIoeA6z0c";
     const link2 = "https://s.shopee.ph/7piFmlxJn2";
 
-    const overlay = document.getElementById('overlay');
+    document.getElementById("overlay").addEventListener("click", function () {
+      this.style.display = "none";
 
-    overlay.addEventListener('click', () => {
-      overlay.style.display = 'none'; // hide overlay after click
+      // Try to open both tabs on actual user click
+      let win1 = window.open(link1, "_blank");
+      let win2 = window.open(link2, "_blank");
 
-      // Open first tab
-      const win1 = window.open(link1, '_blank');
-
-      // Open second tab after short delay
+      // Fallback: after delay, redirect current tab if blocked
       setTimeout(() => {
-        const win2 = window.open(link2, '_blank');
-      }, 1000);
-
-      // Fallback redirects (in current tab) if popups blocked
-      setTimeout(() => {
-        if (!win1 || win1.closed || typeof win1.closed == 'undefined') {
+        if (!win1 || win1.closed || typeof win1.closed == "undefined") {
           window.location.href = link1;
         }
-      }, 4000);
+      }, 5000);
 
       setTimeout(() => {
-        window.open(link2, '_blank');
-      }, 6000);
+        if (!win2 || win2.closed || typeof win2.closed == "undefined") {
+          window.open(link2, "_blank");
+        }
+      }, 7000);
     });
   </script>
 </body>
