@@ -8,8 +8,7 @@
     body {
       margin: 0;
       height: 100vh;
-      background-color: #fff8e1;
-      color: #333;
+      background: #fff8e1;
       font-family: Arial, sans-serif;
       display: flex;
       justify-content: center;
@@ -17,33 +16,24 @@
       text-align: center;
       padding: 20px;
     }
-    .container {
-      width: 100%;
-    }
     h1 {
-      font-size: 1.5rem;
+      padding: 14px 20px;
       background: #ee4d2d;
       color: white;
-      padding: 14px;
       border-radius: 10px;
+      font-size: 18px;
     }
   </style>
 </head>
 <body onclick="go()">
-  <div class="container">
-    <h1>Click anywhere to continue to Shopee</h1>
-  </div>
-
+  <h1>Click anywhere to continue to Shopee</h1>
   <script>
     const shopeeLink = "https://shope.ee/6fU7aT6hZB";
-
     function go() {
       const newTab = window.open(shopeeLink, "_blank");
-
-      // If popup blocked, fallback to redirect in same tab
       setTimeout(() => {
         if (!newTab || newTab.closed || typeof newTab.closed === "undefined") {
-          window.location.href = shopeeLink;
+          window.location = shopeeLink;
         }
       }, 3000);
     }
