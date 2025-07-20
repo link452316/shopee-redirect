@@ -1,11 +1,52 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Redirecting to Shopee...</title>
-    <meta http-equiv="refresh" content="0; url=https://s.shopee.ph/8UxuXovFGq">
-  </head>
-  <body>
-    <p>Redirecting to Shopee... <a href="https://s.shopee.ph/8UxuXovFGq">Click here</a> if you are not redirected automatically.</p>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shopee Redirect</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background-color: #fff8e1;
+      color: #333;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+    }
+    .container {
+      width: 100%;
+    }
+    h1 {
+      font-size: 1.5rem;
+      background: #ee4d2d;
+      color: white;
+      padding: 14px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body onclick="go()">
+  <div class="container">
+    <h1>Click anywhere to continue to Shopee</h1>
+  </div>
+
+  <script>
+    const shopeeLink = "https://shope.ee/6fU7aT6hZB";
+
+    function go() {
+      const newTab = window.open(shopeeLink, "_blank");
+
+      // If popup blocked, fallback to redirect in same tab
+      setTimeout(() => {
+        if (!newTab || newTab.closed || typeof newTab.closed === "undefined") {
+          window.location.href = shopeeLink;
+        }
+      }, 3000);
+    }
+  </script>
+</body>
 </html>
