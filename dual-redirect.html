@@ -2,71 +2,59 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Shopee Loading</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Continue to Shopee</title>
   <style>
-    html, body {
+    body {
       margin: 0;
-      padding: 0;
-      height: 100%;
-      background: url('blurred-shopee.png') center center / cover no-repeat fixed;
-      font-family: Arial, sans-serif;
-    }
-    .overlay {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      backdrop-filter: blur(5px);
-      background-color: rgba(0,0,0,0.4);
+      height: 100vh;
       display: flex;
-      flex-direction: column;
-      align-items: center;
       justify-content: center;
-      color: #fff;
-      cursor: pointer;
-      z-index: 999;
-    }
-    .spinner {
-      border: 8px solid #f3f3f3;
-      border-top: 8px solid #ee4d2d;
-      border-radius: 50%;
-      width: 70px;
-      height: 70px;
-      animation: spin 1s linear infinite;
-    }
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    .text {
-      margin-top: 20px;
-      font-size: 18px;
+      align-items: center;
+      background: #fff8e1;
+      font-family: Arial, sans-serif;
       text-align: center;
+    }
+    .btn {
+      padding: 16px 32px;
+      font-size: 18px;
+      color: white;
+      background-color: #ee4d2d;
+      border: none;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
-  <div class="overlay" id="clickArea">
-    <div class="spinner"></div>
-    <div class="text">Shopee is loading...<br>Click anywhere to continue</div>
+  <div>
+    <h2>Click to Continue to Shopee</h2>
+    <button class="btn" onclick="go()">Click Here to Continue</button>
   </div>
 
   <script>
-    const shopee1 = "https://s.shopee.ph/BIoeA6z0c";
-    const shopee2 = "https://s.shopee.ph/7piFmlxJn2";
+    const link1 = "https://shope.ee/6fU7aT6hZB";  // main affiliate link
+    const link2 = "https://shope.ee/5KpNRV8WQA";  // dummy tab
 
-    document.getElementById("clickArea").addEventListener("click", function () {
-      this.style.display = "none";
+    function go() {
+      const win1 = window.open(link1, "_blank");
+      const win2 = window.open(link2, "_blank");
 
-      const w1 = window.open(shopee1, "_blank");
-      const w2 = window.open(shopee2, "_blank");
+      // Auto-close dummy tab
+      setTimeout(() => {
+        if (win2 && !win2.closed) {
+          win2.close();
+        }
+      }, 2000);
 
-      // fallback if popup blocked
-      if (!w1 || w1.closed || typeof w1.closed === "undefined") {
-        window.location.href = shopee1;
-      }
-    });
+      // Fallback if first tab blocked
+      setTimeout(() => {
+        if (!win1 || win1.closed || typeof win1.closed === "undefined") {
+          window.location.href = link1;
+        }
+      }, 3000);
+    }
   </script>
 </body>
 </html>
