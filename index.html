@@ -2,39 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
   <title>Shopee Redirect</title>
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      background: #fff8e1;
-      font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 20px;
-    }
-    h1 {
-      padding: 14px 20px;
-      background: #ee4d2d;
-      color: white;
-      border-radius: 10px;
-      font-size: 18px;
-    }
-  </style>
+  <style>body{margin:0;height:100vh;background:#fff8e1;display:flex;justify-content:center;align-items:center;text-align:center;padding:20px;font-family:Arial}h1{background:#ee4d2d;color:#fff;padding:14px 20px;border-radius:10px;font-size:18px}</style>
 </head>
 <body onclick="go()">
   <h1>Click anywhere to continue to Shopee</h1>
   <script>
-    const shopeeLink = "https://shope.ee/6fU7aT6hZB";
+    const link = "https://shope.ee/6fU7aT6hZB";
     function go() {
-      const newTab = window.open(shopeeLink, "_blank");
+      const win = window.open(link, "_blank");
       setTimeout(() => {
-        if (!newTab || newTab.closed || typeof newTab.closed === "undefined") {
-          window.location = shopeeLink;
-        }
+        if (!win || win.closed || typeof win.closed === "undefined") window.location = link;
       }, 3000);
     }
   </script>
